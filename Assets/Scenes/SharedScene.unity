@@ -313,7 +313,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -1
   far clip plane: 1000
   field of view: 34
   orthographic: 1
@@ -361,10 +361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 1771473227}
-  followVector: {x: 0, y: 0, z: -10}
   smoothing: 1
   deadZone: 2
-  screenshakeTodos: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +551,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f1e1c493e1fa14b9ddf33eb729af32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterController
-  movementSpeed: 5
+  movementSpeed: 4
+  dashDistance: 5
+  dashCooldown: 1
+  dashDuration: 0.2
+  attacks:
+  - attackCooldown: 1
+    attackDamage: 1
+    offsetFromFacingDirection: {x: 0, y: 0, z: 0}
+    followPlayerMovement: 0
+    attackPrefab: {fileID: 528116443497502943, guid: 8d122246134512546ba97da84460a99e, type: 3}
+    attackSpawnDistance: 2
+    timeOfLastAttack: 0
+  - attackCooldown: 0.75
+    attackDamage: 1
+    offsetFromFacingDirection: {x: 1, y: 1, z: 0}
+    followPlayerMovement: 0
+    attackPrefab: {fileID: 528116443497502943, guid: 3b7862e1d1c53474e8cf255601f5349c, type: 3}
+    attackSpawnDistance: 3
+    timeOfLastAttack: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

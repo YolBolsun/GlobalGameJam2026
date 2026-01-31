@@ -1,21 +1,29 @@
+using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterController : MonoBehaviour
 {
-    InputAction moveAction;
-    
+    [Serializable]
+    public class Attack
+    {
+        public float attackCooldown;
+        public float attackDamage;
+        public Vector3 offsetFromFacingDirection;
+        public bool followPlayerMovement = false;
+        public GameObject attackPrefab;
+        public float attackSpawnDistance;
 
-    [Header("Movement setup variables")]
+        public float timeOfLastAttack = 0;
+
+    }
+
+    [Header("Movement Settings")]
     [Tooltip("Movement Speed - Player Speed")]
     [SerializeField] private float movementSpeed;
-    [Header("Sprint setup variables")]
-    [Tooltip("Sprint Modifier - How much faster the player moves when sprinting")]
-    [SerializeField] private float sprintModifier;
-    InputAction sprintAction;
-    // Will be using this for dash
-    InputAction jumpAction;
-    // Dash variables (remove if not wanted)
+
     [Header("Dash setup variables")]
     [Tooltip("Dash Distance - How far the dash is aiming")]
     [SerializeField] private float dashDistance;
@@ -23,55 +31,64 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float dashCooldown;
     [Tooltip("Dash Duration - How long the players move towards that target... maybe?")]
     [SerializeField] private float dashDuration;
-    public Vector3 dashTarget;
-    private float dashCooldownActive = 0f;
-    private Vector3 prevPos;
-    private float sprint;
-    public Vector3 forward;
+
+    [Header("Attack Settings")]
+    [SerializeField] List<Attack> attacks;
+
+    InputAction moveAction;
+    InputAction dashAction;
+    private float dashStartTime = -10000f;
+    private Vector2 dashDirection;
+    //facing direction
+    private Vector3 facingDirection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-        sprintAction = InputSystem.actions.FindAction("Sprint");
-        jumpAction = InputSystem.actions.FindAction("Jump");
-        dashTarget = transform.position;
-        prevPos = transform.position;
+        dashAction = InputSystem.actions.FindAction("Jump");
         // Place holder for dash target
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (sprintAction.ReadValue<float>() > 0)
+        HandleMovement();
+        HandleAttack();
+    }
+
+    private void HandleMovement()
+    {
+        Vector3 moveValue = moveAction.ReadValue<Vector2>();
+        float calculatedMoveSpeed = movementSpeed;
+
+        //if isdashing
+        if (Time.realtimeSinceStartup < dashStartTime + dashDuration)
         {
-            sprint = sprintModifier;
+            moveValue = dashDirection;
+            calculatedMoveSpeed = dashDistance / dashDuration;
         }
-        else
+        else if (Time.realtimeSinceStartup > dashStartTime + dashCooldown && dashAction.triggered)
         {
-            sprint = movementSpeed;
+            dashStartTime = Time.realtimeSinceStartup;
+            dashDirection = facingDirection;
         }
 
-        Vector3 moveValue = moveAction.ReadValue<Vector2>();
-        transform.Translate(movementSpeed * Time.deltaTime * moveValue * sprint);
-        // Dash logic (romove if not wanted)
-        Vector3 moveDelta = transform.position - prevPos;
-        moveDelta.Normalize();
-        forward = moveDelta  + transform.position;
-        dashTarget = transform.position + dashDistance * moveDelta;
-        prevPos = transform.position;
-        if (jumpAction.triggered & dashCooldownActive == 0)
+        if (moveValue.magnitude > .1f)
         {
-            Debug.Log("Jump triggered");
-            transform.position = Vector2.Lerp(transform.position, dashTarget, dashDuration);
-            dashCooldownActive = dashCooldown;
+            facingDirection = moveValue.normalized;
         }
-        else if (dashCooldownActive > 0)
+
+        transform.Translate(calculatedMoveSpeed * Time.deltaTime * moveValue);
+    }
+
+    private void HandleAttack()
+    {
+        foreach(Attack attack in attacks)
         {
-            //Debug.Log("Time left on cooldown: " + dashCooldownActive);
-            dashCooldownActive -= Time.deltaTime;
-            if (dashCooldownActive < 0)
+            if(Time.realtimeSinceStartup > attack.timeOfLastAttack + attack.attackCooldown)
             {
-                dashCooldownActive = 0;
+                attack.timeOfLastAttack = Time.realtimeSinceStartup;
+                GameObject.Instantiate(attack.attackPrefab, transform.position + facingDirection * attack.attackSpawnDistance + attack.offsetFromFacingDirection, Quaternion.identity);
             }
         }
     }

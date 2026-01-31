@@ -11,10 +11,10 @@ public class CharacterController : MonoBehaviour
     {
         public float attackCooldown;
         public float attackDamage;
-        public Vector3 offsetFromFacingDirection;
         public bool followPlayerMovement = false;
         public GameObject attackPrefab;
         public float attackSpawnDistance;
+        public List<Transform> targetLocations;
 
         public float timeOfLastAttack = 0;
 
@@ -62,14 +62,14 @@ public class CharacterController : MonoBehaviour
         float calculatedMoveSpeed = movementSpeed;
 
         //if isdashing
-        if (Time.realtimeSinceStartup < dashStartTime + dashDuration)
+        if (Time.time < dashStartTime + dashDuration)
         {
             moveValue = dashDirection;
             calculatedMoveSpeed = dashDistance / dashDuration;
         }
-        else if (Time.realtimeSinceStartup > dashStartTime + dashCooldown && dashAction.triggered)
+        else if (Time.time > dashStartTime + dashCooldown && dashAction.triggered)
         {
-            dashStartTime = Time.realtimeSinceStartup;
+            dashStartTime = Time.time;
             dashDirection = facingDirection;
         }
 
@@ -85,10 +85,32 @@ public class CharacterController : MonoBehaviour
     {
         foreach(Attack attack in attacks)
         {
-            if(Time.realtimeSinceStartup > attack.timeOfLastAttack + attack.attackCooldown)
+            if(Time.time > attack.timeOfLastAttack + attack.attackCooldown)
             {
-                attack.timeOfLastAttack = Time.realtimeSinceStartup;
-                GameObject.Instantiate(attack.attackPrefab, transform.position + facingDirection * attack.attackSpawnDistance + attack.offsetFromFacingDirection, Quaternion.identity);
+                attack.timeOfLastAttack = Time.time;
+                List<Vector3> spawnLocations = new List<Vector3>();
+                
+                if(attack.targetLocations.Count > 0)
+                {
+                    foreach(Transform targetTransform in attack.targetLocations)
+                    {
+                        spawnLocations.Add(targetTransform.position);
+                    }
+                }
+                else
+                {
+                    spawnLocations.Add(transform.position + facingDirection * attack.attackSpawnDistance);
+                }
+                Transform parentTransform = null;
+                if (attack.followPlayerMovement)
+                {
+                    parentTransform = this.transform;
+                }
+                foreach (Vector3 spawnLocation in spawnLocations)
+                {
+                    GameObject.Instantiate(attack.attackPrefab, spawnLocation, Quaternion.identity, parentTransform);
+
+                }
             }
         }
     }

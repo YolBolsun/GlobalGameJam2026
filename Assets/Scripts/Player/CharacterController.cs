@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.UIElements;
 
 public class CharacterController : MonoBehaviour
 {
@@ -29,6 +27,7 @@ public class CharacterController : MonoBehaviour
     private float dashCooldownActive = 0f;
     private Vector3 prevPos;
     private float sprint;
+    public Vector3 forward;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,6 +56,7 @@ public class CharacterController : MonoBehaviour
         // Dash logic (romove if not wanted)
         Vector3 moveDelta = transform.position - prevPos;
         moveDelta.Normalize();
+        forward = moveDelta  + transform.position;
         dashTarget = transform.position + dashDistance * moveDelta;
         prevPos = transform.position;
         if (jumpAction.triggered & dashCooldownActive == 0)

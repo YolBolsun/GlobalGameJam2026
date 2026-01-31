@@ -4,7 +4,10 @@ public class EnemyAI : MonoBehaviour
 {
     [Header("Enemy AI Movement Settings")]
     [Tooltip("How close to get to the player")]
-    [SerializeField] private float desiredDistanceToPlayer;
+    [SerializeField] private float desiredMinimumDistanceToPlayer;
+    [SerializeField] private float desiredMaximumDistanceToPlayer;
+
+    [SerializeField] private EnemyRepositionType repositionType;
 
     [Tooltip("How close to get to the desired destination")]
     [SerializeField] private float destinationWiggleRoom;
@@ -31,6 +34,12 @@ public class EnemyAI : MonoBehaviour
         Attacking,
         Dying,
         Idle
+    }
+
+    public enum EnemyRepositionType
+    {
+        SimpleTowardsPlayer,
+        ErraticWithinAttackRange,
     }
 
     private State currState = State.Idle;
@@ -94,7 +103,11 @@ public class EnemyAI : MonoBehaviour
     private void PickDestination()
     {
         Debug.Log("simple placeholder destination handling");
-        destination = (transform.position - player.position).normalized * desiredDistanceToPlayer + player.position;
+        if(repositionType == EnemyRepositionType.SimpleTowardsPlayer)
+        {
+            destination = (transform.position - player.position).normalized * desiredMaximumDistanceToPlayer + player.position;
+
+        }
     }
 
     public void Die()

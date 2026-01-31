@@ -394,7 +394,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6699735e7b611840ae3f307d6ce68eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  desiredDistanceToPlayer: 3
+  desiredMinimumDistanceToPlayer: 0
+  desiredMaximumDistanceToPlayer: 2
+  repositionType: 0
   destinationWiggleRoom: 1
   aggroRange: 5
   movementSpeed: 3
@@ -960,19 +962,35 @@ MonoBehaviour:
   attacks:
   - attackCooldown: 1
     attackDamage: 1
-    followPlayerMovement: 1
+    followPlayerMovement: 0
     attackPrefab: {fileID: 528116443497502943, guid: 8d122246134512546ba97da84460a99e, type: 3}
     attackSpawnDistance: 2
     targetLocations:
     - {fileID: 707465151}
     - {fileID: 1371059009}
+    useRandomAttack: 0
+    minRandomAttackRadius: 0
+    maxRandomAttackRadius: 0
     timeOfLastAttack: 0
   - attackCooldown: 0.75
     attackDamage: 1
-    followPlayerMovement: 1
+    followPlayerMovement: 0
     attackPrefab: {fileID: 528116443497502943, guid: 3b7862e1d1c53474e8cf255601f5349c, type: 3}
     attackSpawnDistance: 3
     targetLocations: []
+    useRandomAttack: 0
+    minRandomAttackRadius: 0
+    maxRandomAttackRadius: 0
+    timeOfLastAttack: 0
+  - attackCooldown: 0.4
+    attackDamage: 1
+    followPlayerMovement: 0
+    attackPrefab: {fileID: 528116443497502943, guid: 3b7862e1d1c53474e8cf255601f5349c, type: 3}
+    attackSpawnDistance: 0
+    targetLocations: []
+    useRandomAttack: 1
+    minRandomAttackRadius: 2
+    maxRandomAttackRadius: 5
     timeOfLastAttack: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

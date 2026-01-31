@@ -16,6 +16,10 @@ public class CharacterController : MonoBehaviour
         public float attackSpawnDistance;
         public List<Transform> targetLocations;
 
+        public bool useRandomAttack = false;
+        public float minRandomAttackRadius;
+        public float maxRandomAttackRadius;
+
         public float timeOfLastAttack = 0;
 
     }
@@ -97,8 +101,24 @@ public class CharacterController : MonoBehaviour
                         spawnLocations.Add(targetTransform.position);
                     }
                 }
-                else
+                else if (attack.useRandomAttack)
                 {
+                    float randX = UnityEngine.Random.Range(attack.minRandomAttackRadius, attack.maxRandomAttackRadius);
+                    int flip = UnityEngine.Random.Range(0, 2);
+                    if(flip == 1)
+                    {
+                        randX *= -1f;
+                    }
+                    float randY = UnityEngine.Random.Range(attack.minRandomAttackRadius, attack.maxRandomAttackRadius);
+                    flip = UnityEngine.Random.Range(0, 2);
+                    if (flip == 1)
+                    {
+                        randY *= -1f;
+                    }
+                    Vector3 offset = new Vector3(randX, randY, 0f);
+                    spawnLocations.Add(transform.position + offset);
+                }
+                else {
                     spawnLocations.Add(transform.position + facingDirection * attack.attackSpawnDistance);
                 }
                 Transform parentTransform = null;

@@ -17,8 +17,7 @@ public class HitBox : MonoBehaviour
         transform.position = forward.forward;
         if (strike.triggered)
         {
-            
-            Debug.Log("Attack performed - HitBox active");
+           
         }
         else
         {

@@ -6,7 +6,8 @@ public class CameraFollow : MonoBehaviour
     [Tooltip("Target to Follow")]
     [SerializeField] private Transform target;
     [Tooltip("Camera offset to target")]
-    [SerializeField] private Vector3 followVector;
+    //Renamed to doNotTouch (as for now we dont need to toutch it, since it just offcets the camera's target)
+    [SerializeField] private Vector3 doNotTouch;
 
     [Header("Camera Movement Settings")]
     [Tooltip("How quickly the camera catches up")]
@@ -21,15 +22,15 @@ public class CameraFollow : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Debug.Log("CameraFollow script started");
     }
 
     void LateUpdate()
     {
-        Vector3 targetPos = target.position + followVector;
+        Vector3 targetPos = target.position + doNotTouch;
         if((targetPos - transform.position).magnitude > deadZone)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPos, smoothing * Time.deltaTime);
+            transform.position = Vector2.Lerp(transform.position, targetPos, smoothing * Time.deltaTime);
         }
     }
 

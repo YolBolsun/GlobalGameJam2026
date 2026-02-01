@@ -19,9 +19,9 @@ public class PlayerController: MonoBehaviour
         public bool useRandomAttack = false;
         public float minRandomAttackRadius;
         public float maxRandomAttackRadius;
-
         public float timeOfLastAttack = 0;
 
+        public float timeToDestroy = 1f;
     }
 
     [Header("Movement Settings")]

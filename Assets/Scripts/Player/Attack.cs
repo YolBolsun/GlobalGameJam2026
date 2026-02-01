@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public float timeToDestroy = 1f;
     public PlayerController.AttackData attackData;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Destroy(this.gameObject, timeToDestroy);
+        Destroy(this.gameObject, attackData.timeToDestroy);
     }
 
     // Update is called once per frame

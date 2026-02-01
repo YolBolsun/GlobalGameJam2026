@@ -12,7 +12,7 @@ public class StorySceneRunner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.timeSinceLevelLoad > 2f)
+        if(Time.timeSinceLevelLoad > 10f)
         {
             SceneManager.LoadScene(0);
         }

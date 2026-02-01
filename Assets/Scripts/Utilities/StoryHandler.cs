@@ -26,13 +26,7 @@ public class StoryHandler : MonoBehaviour
             Destroy(gameObject); // Destroys duplicate instances
             return;
         }
-        if(combatScene == SceneManager.GetActiveScene().buildIndex)
-        {
-            //setup combat scene
-            playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            unlockProgression += 1;
-            SetupProgression();
-        }
+        
     }
 
     public static void GoNextScene()
@@ -83,12 +77,12 @@ public class StoryHandler : MonoBehaviour
     }
     private void ProgressionPoint3()
     {
-        Debug.Log("ProgressionPoint2 unlock some other shit");
+        Debug.Log("ProgressionPoint3 unlock some other shit");
         playerController.attacks[2].enabled = true;
     }
     private void ProgressionPoint4()
     {
-        Debug.Log("ProgressionPoint2 unlock some other shit");
+        Debug.Log("ProgressionPoint4 unlock some other shit");
         foreach(PlayerController.AttackData attack in playerController.attacks)
         {
             attack.attackDamage *= 2;
@@ -96,7 +90,32 @@ public class StoryHandler : MonoBehaviour
     }
     private void ProgressionPoint5()
     {
-        Debug.Log("ProgressionPoint2 unlock some other shit");
+        Debug.Log("ProgressionPoint5 unlock some other shit");
         playerController.attacks[3].enabled = true;
+    }
+
+    void OnEnable()
+    {
+        // Subscribe to the sceneLoaded event when the object is enabled
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        // Unsubscribe when the object is disabled or destroyed
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //Debug.Log("Scene " + scene.name + " loaded. Executing actions for the persistent object.");
+        // Place code here that needs to run on every screen load
+        if (combatScene == SceneManager.GetActiveScene().buildIndex)
+        {
+            //setup combat scene
+            playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            unlockProgression += 1;
+            SetupProgression();
+        }
     }
 }

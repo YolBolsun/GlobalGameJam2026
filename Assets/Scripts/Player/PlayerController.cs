@@ -26,7 +26,7 @@ public class PlayerController: MonoBehaviour
 
     [Header("Movement Settings")]
     [Tooltip("Movement Speed - Player Speed")]
-    [SerializeField] private float movementSpeed;
+    public float movementSpeed;
 
     [Header("Dash setup variables")]
     [Tooltip("Dash Distance - How far the dash is aiming")]
@@ -37,7 +37,7 @@ public class PlayerController: MonoBehaviour
     [SerializeField] private float dashDuration;
 
     [Header("Attack Settings")]
-    [SerializeField] List<AttackData> attacks;
+    public List<AttackData> attacks;
 
     InputAction moveAction;
     InputAction lookAction;

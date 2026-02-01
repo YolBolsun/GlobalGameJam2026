@@ -41,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            Debug.Log("Player has died placeholder");
+            StoryHandler.GoNextScene();
         }
         StartCoroutine(FlashEffect());
         healthSlider.value = (float)health / (float)maxHealth;

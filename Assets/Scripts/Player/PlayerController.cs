@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController: MonoBehaviour
 {
@@ -146,7 +147,9 @@ public class PlayerController: MonoBehaviour
                 }
                 foreach (Vector3 spawnLocation in spawnLocations)
                 {
-                    GameObject attackObject = GameObject.Instantiate(attack.attackPrefab, spawnLocation, Quaternion.identity, parentTransform);
+                    Vector3 direction = spawnLocation - transform.position;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    GameObject attackObject = GameObject.Instantiate(attack.attackPrefab, spawnLocation, Quaternion.Euler(0f, 0f, angle), parentTransform);
                     attackObject.GetComponent<Attack>().attackData = attack;
                 }
             }

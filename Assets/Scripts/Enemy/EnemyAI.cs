@@ -51,10 +51,14 @@ public class EnemyAI : MonoBehaviour
     private Vector3 destination;
     private float lastAttackTime = 0f;
 
+
+    private Animator animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -74,7 +78,13 @@ public class EnemyAI : MonoBehaviour
         if(currState == State.Repositioning && (transform.position - destination).magnitude > destinationWiggleRoom)
         {
             // move to destination
-            transform.Translate((destination - transform.position).normalized * Time.deltaTime * movementSpeed);
+            Vector3 moveDirection = (destination - transform.position).normalized;
+            if (animator != null)
+            {
+                animator.SetFloat("DirX", moveDirection.x);
+                animator.SetFloat("DirY", moveDirection.y);
+            }
+            transform.Translate(moveDirection * Time.deltaTime * movementSpeed);
         }
         else if(currState == State.Repositioning)
         {

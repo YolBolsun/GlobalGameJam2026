@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6613073154186715045}
   - component: {fileID: 5189331405060308996}
   - component: {fileID: 4980619266108361828}
-  - component: {fileID: 1582073906311311866}
+  - component: {fileID: 8758044874927243377}
   m_Layer: 0
   m_Name: ErraticRangedEnemy
   m_TagString: Enemy
@@ -215,7 +215,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!95 &1582073906311311866
+--- !u!95 &8758044874927243377
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0

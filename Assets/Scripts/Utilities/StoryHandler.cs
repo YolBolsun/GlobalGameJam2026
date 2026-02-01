@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class StoryHandler : MonoBehaviour
 {
     static int unlockProgression = -1;
-    static int currStoryScene = 0;
+    static int currStoryScene = 1;
     static int maxStorySceneIndex = 10;
     public static StoryHandler instance;
 
@@ -34,7 +34,7 @@ public class StoryHandler : MonoBehaviour
         currStoryScene += 1;
         if (currStoryScene > maxStorySceneIndex)
         {
-            currStoryScene = 1;
+            currStoryScene = 2;
         }
         SceneManager.LoadScene(currStoryScene);
     }

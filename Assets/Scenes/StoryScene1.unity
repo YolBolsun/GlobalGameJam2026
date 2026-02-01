@@ -148,6 +148,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488464714019eda45a989a9ea32bf942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorySceneRunner
+  dialogueTextBox: {fileID: 9024567346652736896}
+  imageBox: {fileID: 667522118}
+  dialogueList:
+  - text: "[Vira:]  You know you shouldn\u2019t be getting into that right? I\u2019d
+      rather see you addicted to BD\u2019s than chrome."
+    image: {fileID: 6898110968040145199, guid: ebb6a9987369e8946bdd400673f3f05c, type: 3}
+    timeToShow: 2
+  - text: 'Some other Name: lorem ipsum etc lorem ipsum etc lorem ipsum etc lorem '
+    image: {fileID: 6006572207036290244, guid: d01d725870ed13e4cb1bca8487b0dabe, type: 3}
+    timeToShow: 2
 --- !u!4 &609938734
 Transform:
   m_ObjectHideFlags: 0

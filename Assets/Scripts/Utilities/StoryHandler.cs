@@ -47,6 +47,7 @@ public class StoryHandler : MonoBehaviour
 
     private void SetupProgression()
     {
+        Debug.Log("SetupProgression " + unlockProgression);
         if(unlockProgression > 0)
         {
             ProgressionPoint1();

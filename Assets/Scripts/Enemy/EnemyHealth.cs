@@ -4,7 +4,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [Header("Health Settings")]
     [Tooltip("Enemy Health")]
-    [SerializeField] private int health;
+    [SerializeField] private float health;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         Debug.Log("enemy took damage " + damage);
         health -= damage;

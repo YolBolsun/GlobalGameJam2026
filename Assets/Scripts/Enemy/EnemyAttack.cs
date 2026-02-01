@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public int damage;
+    public float damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +19,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(10);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
             Destroy(this.gameObject);
         }
     }

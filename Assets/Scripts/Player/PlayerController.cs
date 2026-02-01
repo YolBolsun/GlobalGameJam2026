@@ -10,7 +10,7 @@ public class PlayerController: MonoBehaviour
     public class AttackData
     {
         public float attackCooldown;
-        public int attackDamage;
+        public float attackDamage;
         public bool followPlayerMovement = false;
         public GameObject attackPrefab;
         public float attackSpawnDistance;

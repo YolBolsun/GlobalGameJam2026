@@ -6,9 +6,9 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
     [Tooltip("Player Health")]
-    [SerializeField] private int maxHealth;
+    [SerializeField] private float maxHealth;
     [SerializeField] private Slider healthSlider;
-    private int health;
+    private float health;
 
     [Header("Health Flash Settings")]
     [Tooltip("Flash Color")]
@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
@@ -44,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
             StoryHandler.GoNextScene();
         }
         StartCoroutine(FlashEffect());
-        healthSlider.value = (float)health / (float)maxHealth;
+        healthSlider.value = health / maxHealth;
     }
     IEnumerator FlashEffect()
     {

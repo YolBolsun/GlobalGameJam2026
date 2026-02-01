@@ -618,7 +618,7 @@ MonoBehaviour:
   imageBox: {fileID: 667522118}
   dialogueList:
   - text: '[Vira:]  Why are you back? Can you even drink anymore? '
-    image: {fileID: 6898110968040145199, guid: ebb6a9987369e8946bdd400673f3f05c, type: 3}
+    image: {fileID: 6241928444207587299, guid: 60c436f5fa7f8184eb0ef83f8a6b89c1, type: 3}
     timeToShow: 5
     toEnable:
     - {fileID: 359670144}
@@ -626,20 +626,20 @@ MonoBehaviour:
     musicScene: 2
   - text: "[Vira:]  You\u2019re no friend of mine, I have more memories with a bottle
       than with you."
-    image: {fileID: 6898110968040145199, guid: ebb6a9987369e8946bdd400673f3f05c, type: 3}
+    image: {fileID: 4830561021331639478, guid: 26a9431b888b76144b7283e62b8d6219, type: 3}
     timeToShow: 5
     toEnable: []
     musicScene: 2
   - text: "[Dr. Sils:]  Are you sure you want to do this kid? There\u2019s no going
       back."
-    image: {fileID: 4182506775493016758, guid: ab0d82e888b710f4894a56e8a1d9fdaf, type: 3}
+    image: {fileID: 5950250605672322626, guid: e1487565117f88e42b40d80960c521f2, type: 3}
     timeToShow: 5
     toEnable:
     - {fileID: 300672423}
     - {fileID: 42178930}
     musicScene: 3
   - text: '[Dr. Sils:]  Alright, just don''t make me regret this. '
-    image: {fileID: 4182506775493016758, guid: ab0d82e888b710f4894a56e8a1d9fdaf, type: 3}
+    image: {fileID: -6412360756180333531, guid: f1397909483378046adc0f93946d4f1d, type: 3}
     timeToShow: 5
     toEnable: []
     musicScene: 3

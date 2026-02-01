@@ -619,7 +619,7 @@ MonoBehaviour:
   dialogueList:
   - text: "[Vira:]  Half metal now aren\u2019t we? When I see you next will you be
       a toaster oven?"
-    image: {fileID: 6898110968040145199, guid: ebb6a9987369e8946bdd400673f3f05c, type: 3}
+    image: {fileID: 6241928444207587299, guid: 60c436f5fa7f8184eb0ef83f8a6b89c1, type: 3}
     timeToShow: 5
     toEnable:
     - {fileID: 359670144}
@@ -627,12 +627,12 @@ MonoBehaviour:
     musicScene: 2
   - text: "[Vira:]  You know you shouldn\u2019t be getting into that right? I\u2019d
       rather see you addicted to BD\u2019s than chrome. "
-    image: {fileID: 6898110968040145199, guid: ebb6a9987369e8946bdd400673f3f05c, type: 3}
+    image: {fileID: 3472789808598928114, guid: e60ffa9ff8a4e014fb5738e2953853c0, type: 3}
     timeToShow: 5
     toEnable: []
     musicScene: 3
   - text: '[Dr. Sils:]  Back so soon? What will it be? Ocular augments, metal bones?'
-    image: {fileID: 4182506775493016758, guid: ab0d82e888b710f4894a56e8a1d9fdaf, type: 3}
+    image: {fileID: 5950250605672322626, guid: e1487565117f88e42b40d80960c521f2, type: 3}
     timeToShow: 5
     toEnable:
     - {fileID: 300672423}

@@ -614,19 +614,19 @@ MonoBehaviour:
   dialogueList:
   - text: ' Vira refuses to talk to you looking away from you, terrified at what
       you''ve become.'
-    image: {fileID: 6898110968040145199, guid: ebb6a9987369e8946bdd400673f3f05c, type: 3}
+    image: {fileID: 3472789808598928114, guid: e60ffa9ff8a4e014fb5738e2953853c0, type: 3}
     timeToShow: 5
     toEnable:
     - {fileID: 359670144}
     - {fileID: 8928042628287108743}
     musicScene: 2
   - text: '[Vira:]  (softly) Leave before I call security.'
-    image: {fileID: 6898110968040145199, guid: ebb6a9987369e8946bdd400673f3f05c, type: 3}
+    image: {fileID: 1265777810313932708, guid: dbd9b6f65d57a67428ede508df365a63, type: 3}
     timeToShow: 5
     toEnable: []
     musicScene: 2
   - text: "[Dr. Sils:]  (Under breath) God I\u2019ve created a monster."
-    image: {fileID: 4182506775493016758, guid: ab0d82e888b710f4894a56e8a1d9fdaf, type: 3}
+    image: {fileID: 5076563629258993323, guid: 6c64e374cda9d5545a5fb1de085e03aa, type: 3}
     timeToShow: 5
     toEnable:
     - {fileID: 300672423}

@@ -618,7 +618,7 @@ MonoBehaviour:
   imageBox: {fileID: 667522118}
   dialogueList:
   - text: '[Vira:]  Remember when we used to smoke off the roof of that Chinese restaurant?'
-    image: {fileID: 6898110968040145199, guid: ebb6a9987369e8946bdd400673f3f05c, type: 3}
+    image: {fileID: 3472789808598928114, guid: e60ffa9ff8a4e014fb5738e2953853c0, type: 3}
     timeToShow: 5
     toEnable:
     - {fileID: 359670144}
@@ -626,13 +626,13 @@ MonoBehaviour:
     musicScene: 2
   - text: '[Vira:]  You told me you would never forget where you came from. Remember
       that. Always.'
-    image: {fileID: 6898110968040145199, guid: ebb6a9987369e8946bdd400673f3f05c, type: 3}
+    image: {fileID: 3472789808598928114, guid: e60ffa9ff8a4e014fb5738e2953853c0, type: 3}
     timeToShow: 5
     toEnable: []
     musicScene: 2
   - text: "[Dr. Sils:]  You\u2019re new here, can I assume I\u2019ll see you more
       often?"
-    image: {fileID: 4182506775493016758, guid: ab0d82e888b710f4894a56e8a1d9fdaf, type: 3}
+    image: {fileID: -6781277090000808497, guid: f86b9bceb420796498757008a6045467, type: 3}
     timeToShow: 5
     toEnable:
     - {fileID: 300672423}
@@ -640,7 +640,7 @@ MonoBehaviour:
     musicScene: 3
   - text: "[Dr. Sils:]  Well I\u2019ll make sure to satisfy your wants. So long as
       you pay."
-    image: {fileID: 4182506775493016758, guid: ab0d82e888b710f4894a56e8a1d9fdaf, type: 3}
+    image: {fileID: -6781277090000808497, guid: f86b9bceb420796498757008a6045467, type: 3}
     timeToShow: 5
     toEnable: []
     musicScene: 3

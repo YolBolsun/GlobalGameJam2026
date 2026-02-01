@@ -4,6 +4,19 @@ using UnityEngine.Audio;
 
 public class AudioBackgroundManager : MonoBehaviour
 {
+	public static AudioBackgroundManager Instance
+	{
+		get
+		{
+			if (instance == null)
+			{
+				instance = GameObject.FindFirstObjectByType<AudioBackgroundManager>();
+			}
+			return instance;
+		}
+	}
+	private static AudioBackgroundManager instance;
+
 	/// <summary>
 	/// This property enables "Faint club music (gets distorted as the game plays out)". It fades between two audio mixer snapshots using https://www.youtube.com/watch?v=2nYyws0qJOM
 	/// </summary>
@@ -51,6 +64,7 @@ public class AudioBackgroundManager : MonoBehaviour
 		if (distortionCoroutine != null)
 		{
 			StopCoroutine(distortionCoroutine);
+			undistorted.TransitionTo(0.1f);
 			pendingDistortion = false;
 		}
 	}
@@ -60,12 +74,14 @@ public class AudioBackgroundManager : MonoBehaviour
 		// play normal background
 		pendingDistortion = true;
 		float secondsNormal = Mathf.Lerp(300, 1, distortionPercent);
-		Debug.Log("AudioBackgroundManager Normal for seconds:" + secondsNormal);
+		// Debug.Log("AudioBackgroundManager Normal for seconds:" + secondsNormal);
 		yield return new WaitForSeconds(secondsNormal);
 
 		// emphasize distortion in background audio
 		distorted.TransitionTo(0.1f);
 		yield return new WaitForSeconds(2.9f);
+
+		// return to play normal background
 		undistorted.TransitionTo(0.1f);
 		pendingDistortion = false;
 	}

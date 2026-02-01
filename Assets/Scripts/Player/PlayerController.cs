@@ -22,6 +22,7 @@ public class PlayerController: MonoBehaviour
         public float maxRandomAttackRadius;
         public float timeOfLastAttack = 0;
         public float knockback = 0;
+        public bool faceDirectionOfAttack = true;
 
         public float timeToDestroy = 1f;
         public bool enabled = true;
@@ -148,9 +149,15 @@ public class PlayerController: MonoBehaviour
                 }
                 foreach (Vector3 spawnLocation in spawnLocations)
                 {
-                    Vector3 direction = spawnLocation - transform.position;
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    GameObject attackObject = GameObject.Instantiate(attack.attackPrefab, spawnLocation, Quaternion.Euler(0f, 0f, angle), parentTransform);
+                    Quaternion rotation = Quaternion.identity;
+                    if (attack.faceDirectionOfAttack)
+                    {
+                        Vector3 direction = spawnLocation - transform.position;
+                        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                        rotation = Quaternion.Euler(0f, 0f, angle);
+                    }
+                    
+                    GameObject attackObject = GameObject.Instantiate(attack.attackPrefab, spawnLocation, rotation, parentTransform);
                     attackObject.GetComponent<Attack>().attackData = attack;
                 }
             }

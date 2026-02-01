@@ -69,6 +69,11 @@ public class StoryHandler : MonoBehaviour
         Debug.Log("ProgressionPoint1 unlock a weapon or some crap");
         playerController.attacks[0].enabled = true;
         AudioBackgroundManager.StaticDistortionPercent = .2f;
+        GameObject[] orbitalLocations = GameObject.FindGameObjectsWithTag("OrbitalAttackLocations");
+        foreach(GameObject orbitalLoc in orbitalLocations)
+        {
+            orbitalLoc.GetComponent<SpriteRenderer>().enabled = true;
+        }
     }
 
     private void ProgressionPoint2()

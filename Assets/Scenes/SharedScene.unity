@@ -957,7 +957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50363490aec4e4e4fa49fcc165c707a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHealth: 20
+  maxHealth: 200
   healthSlider: {fileID: 1670009022}
   colorToGoTo: {r: 1, g: 0.40632713, b: 0, a: 1}
   flashTime: 0.2

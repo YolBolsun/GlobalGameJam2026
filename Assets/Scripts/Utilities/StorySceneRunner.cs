@@ -46,12 +46,14 @@ public class StorySceneRunner : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    private void ShowNextDialogue()
+    public void ShowNextDialogue()
     {
+        Debug.Log("Move dialogue");
         currDialogue += 1;
         if(currDialogue == dialogueList.Count)
         {
             LoadNextScene();
+            return;
         }
         dialogueTextBox.text = dialogueList[currDialogue].text;
         imageBox.sprite = dialogueList[currDialogue].image;

@@ -34,7 +34,7 @@ public class StoryHandler : MonoBehaviour
         currStoryScene += 1;
         if (currStoryScene > maxStorySceneIndex)
         {
-            currStoryScene = 2;
+            SceneManager.LoadScene(1);
         }
         SceneManager.LoadScene(currStoryScene);
     }

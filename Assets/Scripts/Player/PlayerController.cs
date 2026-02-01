@@ -21,6 +21,7 @@ public class PlayerController: MonoBehaviour
         public float minRandomAttackRadius;
         public float maxRandomAttackRadius;
         public float timeOfLastAttack = 0;
+        public float knockback = 0;
 
         public float timeToDestroy = 1f;
         public bool enabled = true;

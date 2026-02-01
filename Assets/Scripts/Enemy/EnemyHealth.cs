@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, float knockback)
     {
         Debug.Log("enemy took damage " + damage);
         health -= damage;
@@ -27,5 +27,7 @@ public class EnemyHealth : MonoBehaviour
             health = 0;
             GetComponent<EnemyAI>().Die();
         }
+        Vector3 playerLocation = GameObject.FindGameObjectWithTag("Player").transform.position;
+        GetComponent<Rigidbody2D>().AddForce((transform.position - playerLocation).normalized * knockback, ForceMode2D.Impulse);
     }
 }

@@ -19,7 +19,7 @@ public class Attack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(attackData.attackDamage);
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(attackData.attackDamage, attackData.knockback);
         }
     }
 }

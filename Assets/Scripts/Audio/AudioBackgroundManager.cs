@@ -49,8 +49,7 @@ public class AudioBackgroundManager : MonoBehaviour
 	//private float distortionPercent = 0.1f;
 
 	[Tooltip("Type of music to play in the background.")]
-	[SerializeField]
-	private MusicScenes musicType = MusicScenes.Fight;
+	public MusicScenes musicType = MusicScenes.Fight;
 
 	[Header("Stuff to NOT modify")]
 	[SerializeField]
@@ -98,7 +97,7 @@ public class AudioBackgroundManager : MonoBehaviour
 	}
 
 	/// <summary> allows changes to distortionPercent to be tested in the Unity Editor </summary>
-	private void OnValidate()
+	public void OnValidate()
 	{
 		if (false == Application.isPlaying)
 		{

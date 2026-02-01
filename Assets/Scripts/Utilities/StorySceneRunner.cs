@@ -21,6 +21,8 @@ public class StorySceneRunner : MonoBehaviour
         public string text;
         public Sprite image;
         public float timeToShow;
+        public List<GameObject> toEnable;
+        public AudioBackgroundManager.MusicScenes musicScene = AudioBackgroundManager.MusicScenes.NightClub;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,6 +50,14 @@ public class StorySceneRunner : MonoBehaviour
 
     public void ShowNextDialogue()
     {
+        if(currDialogue >= 0)
+        {
+            foreach (GameObject go in dialogueList[currDialogue].toEnable)
+            {
+                go.SetActive(false);
+            }
+        }
+        
         Debug.Log("Move dialogue");
         currDialogue += 1;
         if(currDialogue == dialogueList.Count)
@@ -58,5 +68,11 @@ public class StorySceneRunner : MonoBehaviour
         dialogueTextBox.text = dialogueList[currDialogue].text;
         imageBox.sprite = dialogueList[currDialogue].image;
         timeToSwapDialogue = Time.time + dialogueList[currDialogue].timeToShow;
+        AudioBackgroundManager.Instance.musicType = dialogueList[currDialogue].musicScene;
+        AudioBackgroundManager.Instance.OnValidate();
+        foreach (GameObject go in dialogueList[currDialogue].toEnable)
+        {
+            go.SetActive(true);
+        }
     }
 }

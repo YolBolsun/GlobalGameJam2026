@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class StoryHandler : MonoBehaviour
 {
     static int unlockProgression = -1;
-    static int currStoryScene = 1;
-    static int maxStorySceneIndex = 10;
+    static int currStoryScene = 2;
+    static int maxStorySceneIndex = 7;
     public static StoryHandler instance;
 
 
@@ -62,6 +62,10 @@ public class StoryHandler : MonoBehaviour
         {
             ProgressionPoint5();
         }
+        if (unlockProgression > 5)
+        {
+            ProgressionPoint6();
+        }
     }
 
     private void ProgressionPoint1()
@@ -101,7 +105,17 @@ public class StoryHandler : MonoBehaviour
     {
         Debug.Log("ProgressionPoint5 unlock some other shit");
         playerController.attacks[3].enabled = true;
-        AudioBackgroundManager.StaticDistortionPercent = 1f;
+        AudioBackgroundManager.StaticDistortionPercent = .9f;
+    }
+
+    private void ProgressionPoint6()
+    {
+        Debug.Log("ProgressionPoint5 unlock some other shit");
+        foreach (PlayerController.AttackData attack in playerController.attacks)
+        {
+            attack.attackCooldown /= 2;
+        }
+        AudioBackgroundManager.StaticDistortionPercent = .9f;
     }
 
     void OnEnable()

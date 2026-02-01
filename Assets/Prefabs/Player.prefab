@@ -40,7 +40,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3466102627796626095}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -210,6 +210,8 @@ GameObject:
   - component: {fileID: 2525259060368871671}
   - component: {fileID: 4696044887583226540}
   - component: {fileID: 3636270498418595409}
+  - component: {fileID: 8829455049540109973}
+  - component: {fileID: 806547086575952887}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -231,6 +233,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 895841647425290105}
+  - {fileID: 5704712773353998275}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7662902069648806305
@@ -282,8 +285,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.45372856, g: 0.4009434, b: 1, a: 1}
+  m_Sprite: {fileID: 7544160645822767249, guid: a8c8bd023625ab243afd92695bd3d9b0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -310,8 +313,8 @@ MonoBehaviour:
   dashDuration: 0.2
   attacks:
   - attackCooldown: 1
-    attackDamage: 10
-    followPlayerMovement: 0
+    attackDamage: 100
+    followPlayerMovement: 1
     attackPrefab: {fileID: 528116443497502943, guid: 8d122246134512546ba97da84460a99e, type: 3}
     attackSpawnDistance: 0
     targetLocations:
@@ -322,8 +325,9 @@ MonoBehaviour:
     maxRandomAttackRadius: 0
     timeOfLastAttack: 0
     timeToDestroy: 0.5
+    enabled: 0
   - attackCooldown: 0.4
-    attackDamage: 8
+    attackDamage: 80
     followPlayerMovement: 1
     attackPrefab: {fileID: 528116443497502943, guid: 8b6def7f835126840a022d2f3a3f7e6c, type: 3}
     attackSpawnDistance: 2
@@ -333,8 +337,9 @@ MonoBehaviour:
     maxRandomAttackRadius: 0
     timeOfLastAttack: 0
     timeToDestroy: 0.2
+    enabled: 1
   - attackCooldown: 0.2
-    attackDamage: 15
+    attackDamage: 150
     followPlayerMovement: 0
     attackPrefab: {fileID: 528116443497502943, guid: 3b7862e1d1c53474e8cf255601f5349c, type: 3}
     attackSpawnDistance: 0
@@ -344,7 +349,8 @@ MonoBehaviour:
     maxRandomAttackRadius: 5
     timeOfLastAttack: 0
     timeToDestroy: 0.5
-  - attackCooldown: 0.01
+    enabled: 0
+  - attackCooldown: 0.05
     attackDamage: 15
     followPlayerMovement: 1
     attackPrefab: {fileID: 528116443497502943, guid: 9b8697884a3453640a25da34be0088e7, type: 3}
@@ -355,6 +361,7 @@ MonoBehaviour:
     maxRandomAttackRadius: 5
     timeOfLastAttack: 0
     timeToDestroy: 0.01
+    enabled: 0
 --- !u!70 &4696044887583226540
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -419,6 +426,44 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8829455049540109973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683512412716573166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50363490aec4e4e4fa49fcc165c707a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 50
+  healthSlider: {fileID: 0}
+  colorToGoTo: {r: 1, g: 0.40632713, b: 0, a: 1}
+  flashTime: 0.2
+--- !u!95 &806547086575952887
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683512412716573166}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5d7099c13b5dddb4dad932400d777f60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8182318495966475593
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +504,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8182318495966475593}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -510,3 +555,57 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &8322336451952405180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5704712773353998275}
+  - component: {fileID: 7321659645656496418}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5704712773353998275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322336451952405180}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2302411993177613815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7321659645656496418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322336451952405180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dec7c1e9d915b3479e1898069d22cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  enemyPrefabs:
+  - {fileID: 8881034468526372751, guid: 24b1204cd13ed5f4cb866d0c190a6c86, type: 3}
+  - {fileID: 670688710944345784, guid: d9c4efe03f9a34f45ae7e486a067cc7e, type: 3}
+  - {fileID: 1428937543825325069, guid: c57cf1f36b219644bac2e254aecfeedc, type: 3}
+  - {fileID: 1428937543825325069, guid: 467cb58bbb9820c4eb363a8a57d2caf1, type: 3}
+  timeBetweenSpawns: 1
+  timeBetweenSpawnsScalingAmount: 0.9
+  timeBetweenScalingEvents: 15
+  minimumSpawnRange: 8
+  maximumSpawnRange: 18

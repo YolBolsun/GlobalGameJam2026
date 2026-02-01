@@ -125,7 +125,7 @@ MonoBehaviour:
   desiredMaximumDistanceToPlayer: 4
   repositionType: 0
   destinationWiggleRoom: 0.5
-  aggroRange: 8
+  aggroRange: 20
   movementSpeed: 3
   attackCooldown: 2
   attackDamage: 5

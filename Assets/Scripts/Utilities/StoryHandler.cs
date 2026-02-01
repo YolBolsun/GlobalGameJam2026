@@ -68,17 +68,20 @@ public class StoryHandler : MonoBehaviour
     {
         Debug.Log("ProgressionPoint1 unlock a weapon or some crap");
         playerController.attacks[0].enabled = true;
+        AudioBackgroundManager.StaticDistortionPercent = .2f;
     }
 
     private void ProgressionPoint2()
     {
         Debug.Log("ProgressionPoint2 unlock some other shit");
         playerController.movementSpeed *= 1.5f;
+        AudioBackgroundManager.StaticDistortionPercent = .4f;
     }
     private void ProgressionPoint3()
     {
         Debug.Log("ProgressionPoint3 unlock some other shit");
         playerController.attacks[2].enabled = true;
+        AudioBackgroundManager.StaticDistortionPercent = .6f;
     }
     private void ProgressionPoint4()
     {
@@ -87,11 +90,13 @@ public class StoryHandler : MonoBehaviour
         {
             attack.attackDamage *= 2;
         }
+        AudioBackgroundManager.StaticDistortionPercent = .8f;
     }
     private void ProgressionPoint5()
     {
         Debug.Log("ProgressionPoint5 unlock some other shit");
         playerController.attacks[3].enabled = true;
+        AudioBackgroundManager.StaticDistortionPercent = 1f;
     }
 
     void OnEnable()

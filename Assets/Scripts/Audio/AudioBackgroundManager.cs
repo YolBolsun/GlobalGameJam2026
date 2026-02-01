@@ -119,8 +119,9 @@ public class AudioBackgroundManager : MonoBehaviour
 	{
 		// play normal background
 		pendingDistortion = true;
-		float secondsNormal = Mathf.Lerp(300, 1, DistortionPercent);
-		// Debug.Log("AudioBackgroundManager Normal for seconds:" + secondsNormal);
+		float secondsNormal = Mathf.Lerp(60, 1, DistortionPercent);
+
+		Debug.Log("AudioBackgroundManager DistortionPercent:" + DistortionPercent);
 		yield return new WaitForSeconds(secondsNormal);
 
 		// emphasize distortion in background audio

@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f049b6880c2766f4cbf4cad2a089a651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
+  damage: 0
 --- !u!50 &7554230309258393095
 Rigidbody2D:
   serializedVersion: 5

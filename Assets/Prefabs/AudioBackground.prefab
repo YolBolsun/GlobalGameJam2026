@@ -139,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2762976846082692709}
   - component: {fileID: 1584814143012981935}
+  - component: {fileID: 6612744510240727305}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -172,7 +173,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5133126864252062777, guid: 6f9da3844cfd2c74a99e6fe186f3bba9, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: a3a9ec8070604af478a66c7ea93ee12c, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -258,6 +259,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6612744510240727305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6831369676687362049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e417dc07f1c724289a7136416ddaef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioArray
+  AudioPool:
+  - {fileID: 0}
+  - {fileID: 8300000, guid: a3a9ec8070604af478a66c7ea93ee12c, type: 3}
+  - {fileID: 8300000, guid: 88156eb5f6a8f0d4daba8c023c6749f9, type: 3}
+  - {fileID: 8300000, guid: b78927f64674b6246adac5de5a4460ea, type: 3}
 --- !u!1 &7199485083231353967
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,5 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioBackgroundManager
   distortionPercent: 0.1
+  musicType: 1
   undistorted: {fileID: 24500006, guid: 6f9da3844cfd2c74a99e6fe186f3bba9, type: 2}
   distorted: {fileID: 6972929915515972808, guid: 6f9da3844cfd2c74a99e6fe186f3bba9, type: 2}
+  music: {fileID: 6612744510240727305}

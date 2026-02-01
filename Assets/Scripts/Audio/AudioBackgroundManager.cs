@@ -4,6 +4,14 @@ using UnityEngine.Audio;
 
 public class AudioBackgroundManager : MonoBehaviour
 {
+	public enum MusicScenes
+	{
+		None,
+		Fight,
+		NightClub,
+		Ripperdoc,
+	}
+
 	public static AudioBackgroundManager Instance
 	{
 		get
@@ -33,15 +41,23 @@ public class AudioBackgroundManager : MonoBehaviour
 		}
 	}
 
-	[Tooltip("How often the distortion feedback is audible. 1s to 300s")]
+	[Header("Stuff to modify")]
+	[Tooltip("How often the distortion feedback is audible. 1s to 300s.")]
 	[Range(0, 1)]
 	[SerializeField]
 	private float distortionPercent = 0.1f;
 
+	[Tooltip("Type of music to play in the background.")]
+	[SerializeField]
+	private MusicScenes musicType = MusicScenes.Fight;
+
+	[Header("Stuff to NOT modify")]
 	[SerializeField]
 	private AudioMixerSnapshot undistorted;
 	[SerializeField]
 	private AudioMixerSnapshot distorted;
+	[SerializeField]
+	private AudioArray music;
 
 	/// <summary> true when <seealso cref="distortionCoroutine"/> is running. </summary>
 	private bool pendingDistortion;
@@ -58,15 +74,30 @@ public class AudioBackgroundManager : MonoBehaviour
 		distortionCoroutine = StartCoroutine(playDistortion());
 	}
 
+	public void ChangeMusic(MusicScenes toMusic)
+	{
+		if (music)
+		{
+			music.Play((int)toMusic);
+		}
+	}
+
 	/// <summary> allows changes to distortionPercent to be tested in the Unity Editor </summary>
 	private void OnValidate()
 	{
-		if (distortionCoroutine != null)
+		if (false == Application.isPlaying)
+		{
+			return;
+		}
+
+		if (distortionCoroutine != null) // null only if update hasn't run yet
 		{
 			StopCoroutine(distortionCoroutine);
 			undistorted.TransitionTo(0.1f);
 			pendingDistortion = false;
 		}
+
+		ChangeMusic(musicType);
 	}
 
 	private IEnumerator playDistortion()

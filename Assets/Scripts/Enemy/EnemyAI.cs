@@ -31,6 +31,8 @@ public class EnemyAI : MonoBehaviour
     [Tooltip("Enemy Death Animation Time")]
     [SerializeField] private float deathAnimationTime;
 
+    private AudioArray audioArray;
+
 
     enum State
     {
@@ -59,6 +61,7 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         animator = GetComponent<Animator>();
+        audioArray = GetComponent<AudioArray>();
     }
 
     // Update is called once per frame
@@ -149,6 +152,7 @@ public class EnemyAI : MonoBehaviour
     public void Die()
     {
         currState = State.Dying;
+        audioArray.PlayRandomOneShot();
         animator.SetTrigger("Death");
         Destroy(gameObject, deathAnimationTime);
     }

@@ -32,20 +32,21 @@ public class AudioBackgroundManager : MonoBehaviour
 	{
 		get
 		{
-			return distortionPercent;
+			return Mathf.Clamp01(StaticDistortionPercent);
 		}
 		set
 		{
+			StaticDistortionPercent = value;
 			OnValidate();
-			distortionPercent = value;
 		}
 	}
+	public static float StaticDistortionPercent = 0.1f; // HACK: a scriptable object is a better fit for what we're doing because it can be visible in the inspector as well, but... game jam.
 
 	[Header("Stuff to modify")]
-	[Tooltip("How often the distortion feedback is audible. 1s to 300s.")]
-	[Range(0, 1)]
-	[SerializeField]
-	private float distortionPercent = 0.1f;
+	//[Tooltip("How often the distortion feedback is audible. 1s to 300s.")]
+	//[Range(0, 1)]
+	//[SerializeField]
+	//private float distortionPercent = 0.1f;
 
 	[Tooltip("Type of music to play in the background.")]
 	[SerializeField]
@@ -66,7 +67,7 @@ public class AudioBackgroundManager : MonoBehaviour
 
 	void Update()
 	{
-		if (distortionPercent <= 0.01 || pendingDistortion)
+		if (DistortionPercent <= 0.01 || pendingDistortion)
 		{
 			return;
 		}
@@ -80,6 +81,20 @@ public class AudioBackgroundManager : MonoBehaviour
 		{
 			music.Play((int)toMusic);
 		}
+	}
+
+	[ContextMenu("MaxDistortion")]
+	public void MaxDistortion()
+	{
+		StaticDistortionPercent = 1;
+		OnValidate();
+	}
+
+	[ContextMenu("MinDistortion")]
+	public void MinDistortion()
+	{
+		StaticDistortionPercent = 0;
+		OnValidate();
 	}
 
 	/// <summary> allows changes to distortionPercent to be tested in the Unity Editor </summary>
@@ -104,7 +119,7 @@ public class AudioBackgroundManager : MonoBehaviour
 	{
 		// play normal background
 		pendingDistortion = true;
-		float secondsNormal = Mathf.Lerp(300, 1, distortionPercent);
+		float secondsNormal = Mathf.Lerp(300, 1, DistortionPercent);
 		// Debug.Log("AudioBackgroundManager Normal for seconds:" + secondsNormal);
 		yield return new WaitForSeconds(secondsNormal);
 

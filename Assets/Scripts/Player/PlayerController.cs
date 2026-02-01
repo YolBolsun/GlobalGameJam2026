@@ -22,6 +22,7 @@ public class PlayerController: MonoBehaviour
         public float timeOfLastAttack = 0;
 
         public float timeToDestroy = 1f;
+        public bool enabled = true;
     }
 
     [Header("Movement Settings")]
@@ -102,6 +103,10 @@ public class PlayerController: MonoBehaviour
     {
         foreach(AttackData attack in attacks)
         {
+            if (!attack.enabled)
+            {
+                continue;
+            }
             if(Time.time > attack.timeOfLastAttack + attack.attackCooldown)
             {
                 attack.timeOfLastAttack = Time.time;

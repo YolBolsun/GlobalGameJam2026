@@ -55,16 +55,47 @@ public class StoryHandler : MonoBehaviour
         {
             ProgressionPoint2();
         }
-        //etc and so on
+        if (unlockProgression > 2)
+        {
+            ProgressionPoint3();
+        }
+        if (unlockProgression > 3)
+        {
+            ProgressionPoint4();
+        }
+        if (unlockProgression > 4)
+        {
+            ProgressionPoint5();
+        }
     }
 
     private void ProgressionPoint1()
     {
         Debug.Log("ProgressionPoint1 unlock a weapon or some crap");
+        playerController.attacks[0].enabled = true;
     }
 
     private void ProgressionPoint2()
     {
         Debug.Log("ProgressionPoint2 unlock some other shit");
+        playerController.movementSpeed *= 1.5f;
+    }
+    private void ProgressionPoint3()
+    {
+        Debug.Log("ProgressionPoint2 unlock some other shit");
+        playerController.attacks[2].enabled = true;
+    }
+    private void ProgressionPoint4()
+    {
+        Debug.Log("ProgressionPoint2 unlock some other shit");
+        foreach(PlayerController.AttackData attack in playerController.attacks)
+        {
+            attack.attackDamage *= 2;
+        }
+    }
+    private void ProgressionPoint5()
+    {
+        Debug.Log("ProgressionPoint2 unlock some other shit");
+        playerController.attacks[3].enabled = true;
     }
 }

@@ -40,24 +40,37 @@ public class PlayerController: MonoBehaviour
     [SerializeField] List<AttackData> attacks;
 
     InputAction moveAction;
+    InputAction lookAction;
     InputAction dashAction;
     private float dashStartTime = -10000f;
     private Vector2 dashDirection;
     //facing direction
     private Vector3 facingDirection;
+    //mouse/rightstick direction
+    private Vector3 aimDirection;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         dashAction = InputSystem.actions.FindAction("Jump");
-        // Place holder for dash target
+        lookAction = InputSystem.actions.FindAction("Look");
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateAimDirection();
         HandleMovement();
         HandleAttack();
+
+    }
+
+    private void UpdateAimDirection()
+    {
+        Vector2 mousePosition = lookAction.ReadValue<Vector2>();
+        Vector3 worldPositionOfMouse = Camera.main.ScreenToWorldPoint(mousePosition);
+        aimDirection = (worldPositionOfMouse - transform.position).normalized;
     }
 
     private void HandleMovement()
@@ -119,7 +132,7 @@ public class PlayerController: MonoBehaviour
                     spawnLocations.Add(transform.position + offset);
                 }
                 else {
-                    spawnLocations.Add(transform.position + facingDirection * attack.attackSpawnDistance);
+                    spawnLocations.Add(transform.position + aimDirection * attack.attackSpawnDistance);
                 }
                 Transform parentTransform = null;
                 if (attack.followPlayerMovement)

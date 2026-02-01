@@ -102,11 +102,9 @@ public class EnemyAI : MonoBehaviour
 
     private void PickDestination()
     {
-        Debug.Log("simple placeholder destination handling");
         if(repositionType == EnemyRepositionType.SimpleTowardsPlayer)
         {
             destination = (transform.position - player.position).normalized * desiredMaximumDistanceToPlayer + player.position;
-
         }
     }
 

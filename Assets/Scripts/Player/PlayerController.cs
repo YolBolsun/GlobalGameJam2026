@@ -7,10 +7,10 @@ using UnityEngine.InputSystem;
 public class PlayerController: MonoBehaviour
 {
     [Serializable]
-    public class Attack
+    public class AttackData
     {
         public float attackCooldown;
-        public float attackDamage;
+        public int attackDamage;
         public bool followPlayerMovement = false;
         public GameObject attackPrefab;
         public float attackSpawnDistance;
@@ -37,7 +37,7 @@ public class PlayerController: MonoBehaviour
     [SerializeField] private float dashDuration;
 
     [Header("Attack Settings")]
-    [SerializeField] List<Attack> attacks;
+    [SerializeField] List<AttackData> attacks;
 
     InputAction moveAction;
     InputAction dashAction;
@@ -87,7 +87,7 @@ public class PlayerController: MonoBehaviour
 
     private void HandleAttack()
     {
-        foreach(Attack attack in attacks)
+        foreach(AttackData attack in attacks)
         {
             if(Time.time > attack.timeOfLastAttack + attack.attackCooldown)
             {
@@ -128,8 +128,8 @@ public class PlayerController: MonoBehaviour
                 }
                 foreach (Vector3 spawnLocation in spawnLocations)
                 {
-                    GameObject.Instantiate(attack.attackPrefab, spawnLocation, Quaternion.identity, parentTransform);
-
+                    GameObject attackObject = GameObject.Instantiate(attack.attackPrefab, spawnLocation, Quaternion.identity, parentTransform);
+                    attackObject.GetComponent<Attack>().attackData = attack;
                 }
             }
         }

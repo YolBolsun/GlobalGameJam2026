@@ -148,6 +148,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2302411993177613815, guid: bc1654acf04eeac46b49531b66a92b98, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302411993177613815, guid: bc1654acf04eeac46b49531b66a92b98, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302411993177613815, guid: bc1654acf04eeac46b49531b66a92b98, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -208,12 +216,24 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2525259060368871671, guid: bc1654acf04eeac46b49531b66a92b98, type: 3}
+      propertyPath: attacks.Array.data[3].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525259060368871671, guid: bc1654acf04eeac46b49531b66a92b98, type: 3}
       propertyPath: attacks.Array.data[0].knockback
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2525259060368871671, guid: bc1654acf04eeac46b49531b66a92b98, type: 3}
       propertyPath: attacks.Array.data[1].knockback
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525259060368871671, guid: bc1654acf04eeac46b49531b66a92b98, type: 3}
+      propertyPath: attacks.Array.data[3].attackDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525259060368871671, guid: bc1654acf04eeac46b49531b66a92b98, type: 3}
+      propertyPath: attacks.Array.data[3].attackCooldown
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2525259060368871671, guid: bc1654acf04eeac46b49531b66a92b98, type: 3}
       propertyPath: attacks.Array.data[0].faceDirectionOfAttack

@@ -78,6 +78,7 @@ public class StoryHandler : MonoBehaviour
         {
             orbitalLoc.GetComponent<SpriteRenderer>().enabled = true;
         }
+        playerController.transform.localScale = new Vector3(.85f, .85f, 1f);
     }
 
     private void ProgressionPoint2()
@@ -85,12 +86,14 @@ public class StoryHandler : MonoBehaviour
         Debug.Log("ProgressionPoint2 unlock some other shit");
         playerController.movementSpeed *= 1.5f;
         AudioBackgroundManager.StaticDistortionPercent = .4f;
+        playerController.transform.localScale = new Vector3(.9f, .9f, 1f);
     }
     private void ProgressionPoint3()
     {
         Debug.Log("ProgressionPoint3 unlock some other shit");
         playerController.attacks[2].enabled = true;
         AudioBackgroundManager.StaticDistortionPercent = .6f;
+        playerController.transform.localScale = new Vector3(.95f, .95f, 1f);
     }
     private void ProgressionPoint4()
     {
@@ -100,12 +103,14 @@ public class StoryHandler : MonoBehaviour
             attack.attackDamage *= 2;
         }
         AudioBackgroundManager.StaticDistortionPercent = .8f;
+        playerController.transform.localScale = new Vector3(1f, 1f, 1f);
     }
     private void ProgressionPoint5()
     {
         Debug.Log("ProgressionPoint5 unlock some other shit");
         playerController.attacks[3].enabled = true;
         AudioBackgroundManager.StaticDistortionPercent = .9f;
+        playerController.transform.localScale = new Vector3(1.05f, 1.05f, 1f);
     }
 
     private void ProgressionPoint6()
@@ -116,6 +121,7 @@ public class StoryHandler : MonoBehaviour
             attack.attackCooldown /= 2;
         }
         AudioBackgroundManager.StaticDistortionPercent = .9f;
+        playerController.transform.localScale = new Vector3(1.1f, 1.1f, 1f);
     }
 
     void OnEnable()

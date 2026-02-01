@@ -134,7 +134,7 @@ MonoBehaviour:
   attackAnimationTime: 0.5
   attackPrefabSpeed: 0
   attackPrefabLifetime: 0.2
-  deathAnimationTime: 0
+  deathAnimationTime: 1
 --- !u!60 &9114878724486663160
 PolygonCollider2D:
   m_ObjectHideFlags: 0

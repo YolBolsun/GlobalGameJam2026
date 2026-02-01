@@ -149,7 +149,7 @@ public class EnemyAI : MonoBehaviour
     public void Die()
     {
         currState = State.Dying;
+        animator.SetTrigger("Death");
         Destroy(gameObject, deathAnimationTime);
-        Debug.Log("implement enemy death animation");
     }
 }

@@ -19,8 +19,12 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Enemy AI Attack Settings")]
     [SerializeField] private float attackCooldown;
+    [SerializeField] private int attackDamage;
     [SerializeField] private GameObject attackPrefab;
+    [SerializeField] private float attackPrefabSpawnDistance;
     [SerializeField] private float attackAnimationTime;
+    [SerializeField] private float attackPrefabSpeed;
+    [SerializeField] private float attackPrefabLifetime;
 
 
     [Header("Death Settings")]
@@ -90,7 +94,11 @@ public class EnemyAI : MonoBehaviour
         
         if(Time.time > lastAttackTime + attackCooldown)
         {
-            Debug.Log("spawn attack");
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+            GameObject spawnedAttack = GameObject.Instantiate(attackPrefab, transform.position + directionToPlayer*attackPrefabSpawnDistance, Quaternion.identity);
+            spawnedAttack.GetComponent<Rigidbody2D>().linearVelocity = directionToPlayer * attackPrefabSpeed;
+            spawnedAttack.GetComponent<EnemyAttack>().damage = attackDamage;
+            Destroy(spawnedAttack, attackPrefabLifetime);
             lastAttackTime = Time.time;
         }
         if (Time.time > lastAttackTime + attackAnimationTime)
@@ -105,6 +113,26 @@ public class EnemyAI : MonoBehaviour
         if(repositionType == EnemyRepositionType.SimpleTowardsPlayer)
         {
             destination = (transform.position - player.position).normalized * desiredMaximumDistanceToPlayer + player.position;
+        }
+        if (repositionType == EnemyRepositionType.ErraticWithinAttackRange)
+        {
+            float randX = UnityEngine.Random.Range(desiredMinimumDistanceToPlayer, desiredMaximumDistanceToPlayer);
+            int flip = UnityEngine.Random.Range(0, 2);
+            if (flip == 1)
+            {
+                randX *= -1f;
+            }
+            float randY = UnityEngine.Random.Range(desiredMinimumDistanceToPlayer, desiredMaximumDistanceToPlayer);
+            flip = UnityEngine.Random.Range(0, 2);
+            if (flip == 1)
+            {
+                randY *= -1f;
+            }
+            Vector3 offset = new Vector3(randX, randY, 0f);
+
+            destination = player.position + offset;
+
+            //destination = (transform.position - player.position).normalized * desiredMaximumDistanceToPlayer + player.position;
         }
     }
 

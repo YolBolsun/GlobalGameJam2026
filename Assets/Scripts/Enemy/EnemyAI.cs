@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -32,6 +34,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float deathAnimationTime;
 
     private AudioArray audioArray;
+    private List<Vector3> pathToFollow;
 
 
     enum State
@@ -147,6 +150,11 @@ public class EnemyAI : MonoBehaviour
 
             //destination = (transform.position - player.position).normalized * desiredMaximumDistanceToPlayer + player.position;
         }
+        foreach(Vector3 pathCoordinate in FindPath(destination))
+        {
+            Debug.Log(pathCoordinate);
+        }
+        pathToFollow = FindPath(destination);
     }
 
     public void Die()
@@ -155,5 +163,11 @@ public class EnemyAI : MonoBehaviour
         audioArray.PlayRandomOneShot();
         animator.SetTrigger("Death");
         Destroy(gameObject, deathAnimationTime);
+    }
+
+    public List<Vector3> FindPath(Vector3 destination)
+    {
+        return CustomAdditions.GetWorldCoordinatePath(transform.position, destination);
+
     }
 }
